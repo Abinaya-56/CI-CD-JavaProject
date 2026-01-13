@@ -2,70 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CI/CD Java Project</title>
+    <title th:text="${title}">Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+        }
 
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        header {
+            background: rgba(0,0,0,0.4);
+            padding: 25px;
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
 
+        .container {
+            max-width: 900px;
+            margin: 80px auto;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 42px;
+            color: #00ffd5;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background: #00ffd5;
+            color: #003333;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 28px;
+            background: #00ffd5;
+            color: #003333;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #00c9a7;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #cccccc;
+            opacity: 0.8;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">Java CI/CD</a>
-        <div>
-            <a class="btn btn-outline-light btn-sm" href="/about">About</a>
-        </div>
-    </div>
-</nav>
+<header>
+    🚀 Java CI/CD Pipeline Demo
+</header>
 
-<!-- Hero Section -->
-<section class="py-5 text-center bg-white shadow-sm">
-    <div class="container">
-        <h1 class="display-5 fw-bold">Java Spring Boot CI/CD Project</h1>
-        <p class="lead text-muted mt-3">
-            Automated build and deployment using Jenkins, Docker, and AWS EC2.
-        </p>
-    </div>
-</section>
+<div class="container">
+    <h1>Welcome 👋</h1>
 
-<!-- Cards Section -->
-<section class="container py-5">
-    <div class="row g-4">
+    <p>
+        This Spring Boot web application is automatically built, containerized,
+        and deployed to AWS using a complete Jenkins CI/CD pipeline.
+    </p>
 
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Spring Boot</h5>
-                    <p class="card-text">Backend web application built using Java Spring Boot.</p>
-                </div>
-            </div>
-        </div>
+    <span class="badge">CI/CD • Docker • Jenkins • AWS EC2</span>
 
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Jenkins CI/CD</h5>
-                    <p class="card-text">Automated pipeline for build, Dockerization, and deployment.</p>
-                </div>
-            </div>
-        </div>
+    <br>
+    <a href="/about" class="btn">About This Project</a>
+</div>
 
-        <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Docker & AWS</h5>
-                    <p class="card-text">Containerized app deployed on AWS EC2 using Docker.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<footer class="text-center text-muted py-3">
-    © 2026 Java CI/CD Demo Project
+<footer>
+    © 2026 | Automated DevOps Deployment Demo
 </footer>
 
 </body>
