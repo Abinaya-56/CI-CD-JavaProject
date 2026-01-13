@@ -52,4 +52,4 @@ It is packaged as a Docker container and runs on AWS EC2.
 
 ## Proof of Work
 
-Each phase of the project is documented with screenshots inside the Screenshot directorie of this GitHub repository for verification and review.
+Each phase of the project is documented with screenshots inside the Screenshot Folder of this GitHub repository for verification and review.
