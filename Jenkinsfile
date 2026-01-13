@@ -1,22 +1,49 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = "abinaya242/java-ci-cd-demo"
+        CONTAINER_NAME = "java-app"
+    }
+
     stages {
-        stage('Clone Code') {
+
+        stage('Checkout') {
             steps {
-                echo 'Code cloned from GitHub'
+                checkout scm
             }
         }
 
-        stage('Build with Maven') {
+        stage('Build') {
             steps {
                 sh 'mvn clean package -DskipTests'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Docker Build') {
             steps {
-                sh 'docker build -t java-ci-cd-demo:latest .'
+                sh 'docker build -t $IMAGE_NAME:latest .'
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                      echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                      docker push $IMAGE_NAME:latest
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy to EC2') {
+            steps {
+                sh '''
+                  docker stop $CONTAINER_NAME || true
+                  docker rm $CONTAINER_NAME || true
+                  docker run -d -p 8081:8080 --name $CONTAINER_NAME $IMAGE_NAME:latest
+                '''
             }
         }
     }
