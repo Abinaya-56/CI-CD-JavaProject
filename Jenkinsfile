@@ -40,9 +40,12 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 sh '''
-                  docker stop $CONTAINER_NAME || true
-                  docker rm $CONTAINER_NAME || true
-                  docker run -d -p 8081:8080 --name $CONTAINER_NAME $IMAGE_NAME:latest
+                ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/ec2-key.pem ubuntu@54.87.61.34 "
+                  docker pull $IMAGE_NAME:latest &&
+                  docker stop $CONTAINER_NAME || true &&
+                  docker rm $CONTAINER_NAME || true &&
+                  docker run -d -p 80:8080 --name $CONTAINER_NAME $IMAGE_NAME:latest
+                "
                 '''
             }
         }
